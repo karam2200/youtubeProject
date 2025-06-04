@@ -7,19 +7,23 @@ import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import VideoCallIcon from '@mui/icons-material/VideoCall';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import PersonIcon from '@mui/icons-material/Person';
+import SideNavbar from '../SideNavbar/sideNavbar';
 
-const Navbar = () => {
+const Navbar = ({setSideNavbarFunc, sideNavbar}) => {
     const [userPic , setUserPic] = useState('https://wallpapercave.com/avt/UnknownUser.png?v=4')
     const [navbarModal, setNavbarModal] = useState(false)
 
     const handleClickModel = () =>{
         setNavbarModal(prev=>!prev)
     }
+    const sideNavbarFuc = () =>{
+        setSideNavbarFunc(!sideNavbar)
+    }
   return (
     <div className='navbar'>
 
         <div className="navbar-left">
-            <div className="navbarhamburger">
+            <div className="navbarhamburger" onClick={sideNavbarFuc}>
                 <MenuIcon sx={{color:"white"}}/>
             </div>
             <div className="navbar_youtubeImg">

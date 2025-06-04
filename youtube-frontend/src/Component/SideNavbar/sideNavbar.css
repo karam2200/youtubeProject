@@ -1,3 +1,8 @@
+.homeSideNavbarHide{
+    display: none;
+}
+
+
 .home-sideNavbar{
     display: flex;
     flex-direction: column;
@@ -13,6 +18,11 @@
     background-color: black;
     color: white;
 }
+
+.home-sideNavbar ::-webkit-scrollbar{
+    width: 12px;
+}
+
 .home_sideNavbarTop{
     display: flex;
     flex-direction: column;
@@ -30,4 +40,26 @@
     &:hover{
         background-color: rgb(35, 35, 35);
     }
+}
+
+.home_sideNavbarTopOptionTitle{
+    font-size: 14px;
+    font-weight: 450;
+}
+
+.home_sideNavbarMiddle{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgb(86, 85, 85);
+    padding: 10px 0;
+}
+
+.home_sideNavbarTopOptionTitleHeader{
+    font-weight: 600;
+}
+
+.home_sideNavbar_ImgLogo{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
 }
