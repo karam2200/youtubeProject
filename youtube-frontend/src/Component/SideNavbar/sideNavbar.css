@@ -19,7 +19,7 @@
     color: white;
 }
 
-.home-sideNavbar ::-webkit-scrollbar{
+.home-sideNavbar::-webkit-scrollbar{
     width: 12px;
 }
 
