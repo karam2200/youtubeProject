@@ -1,5 +1,6 @@
 import React from 'react'
 import './HomePage.css'
+import { Link } from 'react-router-dom'
 const HomePage = ({sideNavbar}) => {
 
   const options = ['All','Twenty20 Cricket', 'Music', 'Live', 'Mixes', 'Gaming', 'Debates', 'Coke Studio', 'Democracy','Comedy','Mixes','Mixes','Mixes','Mixes','Mixes']
@@ -18,7 +19,7 @@ const HomePage = ({sideNavbar}) => {
       </div>
       
       <div className={sideNavbar?"home_mainPage":"home_mainPageWithoutLink"}>
-        <div className="youtube_Video">
+        <Link to={'/watch/444'} className="youtube_Video">
           <div className="youtube_thumbailBox">
             <img src="https://img.freepik.com/free-psd/creative-youtube-thumbnail-design-template_505751-6045.jpg?semt=ais_hybrid&w=740" alt="" className="youtube_thumbailPic" />
             <div className="youtube_timingThumbnail">
@@ -37,9 +38,9 @@ const HomePage = ({sideNavbar}) => {
               <div className="youtubeVideo_views">3 likea</div>
             </div>
           </div>
-        </div>
+        </Link>
 
-        <div className="youtube_Video">
+        <Link to={'/watch/444'} className="youtube_Video">
           <div className="youtube_thumbailBox">
             <img src="https://img.freepik.com/free-psd/creative-youtube-thumbnail-design-template_505751-6045.jpg?semt=ais_hybrid&w=740" alt="" className="youtube_thumbailPic" />
             <div className="youtube_timingThumbnail">
@@ -58,9 +59,9 @@ const HomePage = ({sideNavbar}) => {
               <div className="youtubeVideo_views">3 likea</div>
             </div>
           </div>
-        </div>
+        </Link>
 
-        <div className="youtube_Video">
+        <Link to={'/watch/444'} className="youtube_Video">
           <div className="youtube_thumbailBox">
             <img src="https://img.freepik.com/free-psd/creative-youtube-thumbnail-design-template_505751-6045.jpg?semt=ais_hybrid&w=740" alt="" className="youtube_thumbailPic" />
             <div className="youtube_timingThumbnail">
@@ -79,9 +80,9 @@ const HomePage = ({sideNavbar}) => {
               <div className="youtubeVideo_views">3 likea</div>
             </div>
           </div>
-        </div>
+        </Link>
 
-        <div className="youtube_Video">
+        <Link to={'/watch/444'} className="youtube_Video">
           <div className="youtube_thumbailBox">
             <img src="https://img.freepik.com/free-psd/creative-youtube-thumbnail-design-template_505751-6045.jpg?semt=ais_hybrid&w=740" alt="" className="youtube_thumbailPic" />
             <div className="youtube_timingThumbnail">
@@ -100,9 +101,9 @@ const HomePage = ({sideNavbar}) => {
               <div className="youtubeVideo_views">3 likea</div>
             </div>
           </div>
-        </div>
+        </Link>
 
-        <div className="youtube_Video">
+        <Link to={'/watch/444'} className="youtube_Video">
           <div className="youtube_thumbailBox">
             <img src="https://img.freepik.com/free-psd/creative-youtube-thumbnail-design-template_505751-6045.jpg?semt=ais_hybrid&w=740" alt="" className="youtube_thumbailPic" />
             <div className="youtube_timingThumbnail">
@@ -121,10 +122,9 @@ const HomePage = ({sideNavbar}) => {
               <div className="youtubeVideo_views">3 likea</div>
             </div>
           </div>
-        </div>
+        </Link>
 
-
-        <div className="youtube_Video">
+        <Link to={'/watch/444'} className="youtube_Video">
           <div className="youtube_thumbailBox">
             <img src="https://img.freepik.com/free-psd/creative-youtube-thumbnail-design-template_505751-6045.jpg?semt=ais_hybrid&w=740" alt="" className="youtube_thumbailPic" />
             <div className="youtube_timingThumbnail">
@@ -143,7 +143,9 @@ const HomePage = ({sideNavbar}) => {
               <div className="youtubeVideo_views">3 likea</div>
             </div>
           </div>
-        </div>
+        </Link>
+
+        
 
       </div>
 

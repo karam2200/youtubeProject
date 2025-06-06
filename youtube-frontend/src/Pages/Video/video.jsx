@@ -1,9 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './video.css'
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
+import { Link } from 'react-router-dom';
 
 const Video = () => {
+const [message,setMessage] = useState()
+
   return (
     <div className='video'>
       <div className="videoPostSection">
@@ -20,9 +23,9 @@ const Video = () => {
 
             <div className="youtube_video_ProfileBlock">
                 <div className="youtube_video_ProfileBlock_left">
-                    <div className="youtube_video_ProfileBlock_left_img">
+                    <Link to={'/user/7868'} className="youtube_video_ProfileBlock_left_img">
                         <img src={"https://static.vecteezy.com/system/resources/previews/027/127/463/non_2x/javascript-logo-javascript-icon-transparent-free-png.png"} alt="js_img" className="youtube_video_ProfileBlock_left_image" />
-                    </div>
+                    </Link>
                     <div className="youtubeVideo_subsView">
                         <div className="youtubePostProfileName">{'User1'}</div>
                         <div className="youtubePostProfileSubs">{'2025-06-03'}</div>
@@ -58,7 +61,7 @@ const Video = () => {
             <div className="youtubeSelfComment">
                 <img src="https://static.vecteezy.com/system/resources/previews/027/127/463/non_2x/javascript-logo-javascript-icon-transparent-free-png.png"  className="video_youtubeSelfCommentProfile" />
                 <div className="addAComment">
-                    <input className='addACommentInput' type="text" placeholder='Add a comment' />
+                    <input className='addACommentInput' value={message} onChange={(e)=>{setMessage(e.target.value)}} type="text" placeholder='Add a comment' />
                     <div className="cancelSubmitComment">
                         <div className="cancelComment">Cancel</div>
                         <div className="cancelComment">Comment</div>
