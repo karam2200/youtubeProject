@@ -55,6 +55,7 @@
     gap: 10px;
     grid-template-columns: 342px 342px 342px;
     padding: 90px 0 20px 0;
+    height: 100vh;
 }
 
 .home_mainPageWithoutLink{

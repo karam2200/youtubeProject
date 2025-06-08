@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import './navbar.css'
 import MenuIcon from '@mui/icons-material/Menu';
 import YouTubeIcon from '@mui/icons-material/YouTube';
@@ -15,6 +15,8 @@ const Navbar = ({setSideNavbarFunc, sideNavbar}) => {
     const [userPic , setUserPic] = useState('https://wallpapercave.com/avt/UnknownUser.png?v=4')
     const [navbarModal, setNavbarModal] = useState(false)
     const [login, setLogin] = useState(false)
+    const [isLogedIn, setIsLogedIn] = useState(false)
+
     const navigate = useNavigate();
 
     const handleClickModel = () =>{
@@ -25,7 +27,8 @@ const Navbar = ({setSideNavbarFunc, sideNavbar}) => {
     }
 
     const handleProfile =()=>{
-        navigate('/user/7697')
+        let userId = localStorage.getItem('userId')
+        navigate(`/user/${userId}`)
         setNavbarModal(false)
     }
 
@@ -35,12 +38,36 @@ const Navbar = ({setSideNavbarFunc, sideNavbar}) => {
 
     const onclickOfPopUpOption =(button)=>{
         setNavbarModal(false)
+
+
         if(button==='login'){
             setLogin(true)
         }else{
-
+            localStorage.clear()
+            getLogoutFun()
+            setTimeout(()=>{
+                navigate('/')
+                window.location.reload()
+            },2000)
         }
     }
+    const getLogoutFun = async()=>{
+        axios.post('http://localhost:4000/auth/logout',{},{ withCredentials: true}).then((res)=>{
+            console.log("Logged Out")
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
+
+
+    useEffect(()=>{
+        let userProfilePic = localStorage.getItem('userProfilePic')
+        setIsLogedIn(localStorage.getItem('userId')!==null)
+        if(userProfilePic!==null){
+            setUserPic(userProfilePic)
+        }
+
+    },[])
   return (
     <div className='navbar'>
 
@@ -75,9 +102,9 @@ const Navbar = ({setSideNavbarFunc, sideNavbar}) => {
 
             {navbarModal &&
              <div className="navbar-model">
-                <div className="navbar-model-option" onClick={handleProfile}>Profile</div>
-                <div className="navbar-model-option" onClick={()=>onclickOfPopUpOption('logout')}>Logout</div>
-                <div className="navbar-model-option" onClick={()=>onclickOfPopUpOption('login')}>Login</div>
+                {isLogedIn && <div className="navbar-model-option" onClick={handleProfile}>Profile</div>}
+                {isLogedIn && <div className="navbar-model-option" onClick={()=>onclickOfPopUpOption('logout')}>Logout</div>}
+                {!isLogedIn && <div className="navbar-model-option" onClick={()=>onclickOfPopUpOption('login')}>Login</div>}
              </div>
             }
         </div>

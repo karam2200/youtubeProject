@@ -1,73 +1,87 @@
-import React from 'react'
-import './profile.css'
-import SideNavbar from '../../Component/SideNavbar/sideNavbar'
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import "./profile.css";
+import SideNavbar from "../../Component/SideNavbar/sideNavbar";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
-const Profile = ({sideNavbar}) => {
+const Profile = ({ sideNavbar }) => {
+  const { id } = useParams();
+  const [data, setData] = useState([]);
+  const [user, SetUser] = useState(null);
+
+  const fetchProfileData = async () => {
+    axios
+      .get(`http://localhost:4000/api/${id}/channel`)
+      .then((response) => {
+        console.log(response);
+        setData(response.data.video);
+        SetUser(response.data.video[0]?.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  useEffect(() => {
+    fetchProfileData();
+  }, []);
+
   return (
-    <div className='profile'>
-      <SideNavbar sideNavbar={sideNavbar}/>
+    <div className="profile">
+      <SideNavbar sideNavbar={sideNavbar} />
 
-
-      <div className={sideNavbar?"profile_page": 'profile_page_inactive'}>
+      <div className={sideNavbar ? "profile_page" : "profile_page_inactive"}>
         <div className="profile_top_section">
-
-            <div className="profile_top_section_profile">
-                <img src="https://static.vecteezy.com/system/resources/previews/027/127/463/non_2x/javascript-logo-javascript-icon-transparent-free-png.png"  className="profile_top_section_img" />
+          <div className="profile_top_section_profile">
+            <img
+              src={user?.profilePic}
+              className="profile_top_section_img"
+            />
+          </div>
+          <div className="profile_top_section_About">
+            <div className="profile_top_section_About_Name">
+              {user?.channelName}
             </div>
-            <div className="profile_top_section_About">
-                <div className="profile_top_section_About_Name">Coder</div>
-                <div className="profile_top_section_info">
-                    @user1 . 4 videos
-                </div>
-
-                <div className="profile_top_section_info">
-                    about section of the channel
-                </div>
+            <div className="profile_top_section_info">
+              {user?.userName} . {data.length} videos
             </div>
 
+            <div className="profile_top_section_info">{user?.about}</div>
+          </div>
         </div>
 
         <div className="profile_videos">
-            <div className="profile_videos_title">Videos &nbsp; <ArrowRightIcon /></div>
+          <div className="profile_videos_title">
+            Videos &nbsp; <ArrowRightIcon />
+          </div>
 
-            <div className="profileVideos">
-                <Link to={'/watch/8989'} className="profileVideo_block">
-                    <div className="profileVideo_block_thumbnail">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUgQ_j2ctD2qSBqJkwfM7yhh1d21fcClFqwg&s" alt="" className="profileVideo_block_thumbnail_img" />
+          <div className="profileVideos">
+            {data.map((item, key) => {
+              return (
+                <Link to={`/watch/${item._id}`} className="profileVideo_block">
+                  <div className="profileVideo_block_thumbnail">
+                    <img
+                      src={item?.thumbnail}
+                      alt=""
+                      className="profileVideo_block_thumbnail_img"
+                    />
+                  </div>
+                  <div className="profileVideo_block_detail">
+                    <div className="profileVideo_block_detail_name">
+                      {item?.title}
                     </div>
-                    <div className="profileVideo_block_detail">
-                        <div className="profileVideo_block_detail_name">Video title</div>
-                        <div className="profileVideo_block_detail_about">Create on 2024-04-06</div>
-                    </div>       
-                </Link>
-
-                <Link to={'/watch/8989'} className="profileVideo_block">
-                    <div className="profileVideo_block_thumbnail">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUgQ_j2ctD2qSBqJkwfM7yhh1d21fcClFqwg&s" alt="" className="profileVideo_block_thumbnail_img" />
+                    <div className="profileVideo_block_detail_about">
+                      Created on {item?.createdAt.slice(0,10)}
                     </div>
-                    <div className="profileVideo_block_detail">
-                        <div className="profileVideo_block_detail_name">Video title</div>
-                        <div className="profileVideo_block_detail_about">Create on 2024-04-06</div>
-                    </div>       
+                  </div>
                 </Link>
-
-                <Link to={'/watch/8989'} className="profileVideo_block">
-                    <div className="profileVideo_block_thumbnail">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUgQ_j2ctD2qSBqJkwfM7yhh1d21fcClFqwg&s" alt="" className="profileVideo_block_thumbnail_img" />
-                    </div>
-                    <div className="profileVideo_block_detail">
-                        <div className="profileVideo_block_detail_name">Video title</div>
-                        <div className="profileVideo_block_detail_about">Create on 2024-04-06</div>
-                    </div>       
-                </Link>
-
-            </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;
