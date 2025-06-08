@@ -58,7 +58,6 @@ const HomePage = ({ sideNavbar }) => {
                   alt="thumbnail"
                   className="youtube_thumbailPic"
                 />
-                <div className="youtube_timingThumbnail">28:05</div>
               </div>
 
               <div className="youtubeTitleBox">
